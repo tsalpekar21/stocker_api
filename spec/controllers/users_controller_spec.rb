@@ -9,7 +9,9 @@ RSpec.describe Api::UsersController, type: :controller do
       post :create, { user: @user_attributes }, format: :json
     end
 
-    it 'renders the user in json format'
+    it 'renders the user in json format' do
+
+    end
     it { should respond_with 201 }
   end
 end
