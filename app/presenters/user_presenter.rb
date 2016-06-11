@@ -3,11 +3,11 @@ class UserPresenter
 
   def initialize(user)
     @user = user
-    @errors = user.errors
+    @errors = user.errors.messages
   end
 
   def successful?
-    errors.messages.empty?
+    errors.empty?
   end
 
   def jsonify

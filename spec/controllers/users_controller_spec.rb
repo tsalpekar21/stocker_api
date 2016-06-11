@@ -26,5 +26,20 @@ RSpec.describe Api::UsersController, type: :controller do
 
       it { should respond_with 200 }
     end
+
+    describe '#update' do
+      let(:new_email) { FFaker::Internet.email }
+      let(:new_name) { FFaker::Name.first_name }
+      let(:user) { create(:user)}
+
+      before do
+        put :update, { id: user.id, user: { email: new_email, first_name: new_name } }, format: :json
+      end
+
+      context 'with some attribtues' do
+        it { should respond_with 200 }
+      end
+
+    end
   end
 end

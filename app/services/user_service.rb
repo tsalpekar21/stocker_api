@@ -5,4 +5,9 @@ class UserService
     UserPresenter.new(user)
   end
 
+  def update(id, user_params)
+    user = User.find(id)
+    user.update(user_params)
+  end
+
 end

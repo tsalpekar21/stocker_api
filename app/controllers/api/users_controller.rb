@@ -10,6 +10,12 @@ module Api
     end
 
     def update
+      success = user_service.update(params[:id], user_params)
+      if success
+        render json: { status: 200 }
+      else
+        render json: { status: 500 }
+      end
     end
 
     private

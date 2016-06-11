@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     post 'users' => 'users#create', as: :users_create
+    put 'user/:id' => 'users#update', as: :users_update
 
     post 'login' => 'sessions#create', as: :login
   end
