@@ -10,8 +10,10 @@ RSpec.describe Api::UsersController, type: :controller do
     end
 
     it 'renders the user in json format' do
-
+      user = json_response(response)[:user]
+      expect(user[:first_name]).to eq(@user_attributes[:first_name])
     end
-    it { should respond_with 201 }
+
+    it { should respond_with 200 }
   end
 end

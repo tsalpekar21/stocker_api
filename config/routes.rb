@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   namespace :api, defaults: {format: 'json'} do
-    get 'users' => 'users#index'
+    post 'users' => 'users#create', as: :users_create
+
+    post 'login' => 'sessions#create', as: :login
   end
 
   # You can have the root of your site routed with "root"
