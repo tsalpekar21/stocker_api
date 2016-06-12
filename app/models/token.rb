@@ -10,13 +10,11 @@ class Token < ActiveRecord::Base
     self.expires < Time.now
   end
 
-  private
-
   def generate_access_token
     begin
       self.access_token = SecureRandom.uuid.gsub(/\-/,'')
     end while self.class.exists?(access_token: access_token)
-    self.expires = Time.now + 2.days unless self.expires
+    self.expires = Time.now + 2.days
   end
 
 end

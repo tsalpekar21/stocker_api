@@ -13,7 +13,9 @@ class UserService
   def create(user_params)
     user = User.create(user_params)
     errors << user.errors.messages if user.errors.messages.any?
-    UserPresenter.new(user)
+    result[:user] = user
+    result[:token] = user.token
+    UserPresenter.new(result)
   end
 
   def update(id, user_params)
@@ -24,11 +26,11 @@ class UserService
 
   def authenticate(email, password)
     user = User.find_by(email: email)
-    if user.authenticate(password)
-      result[:token] = user.tokens.create
+    if user && user.authenticate(password)
+      result[:token] = user.refresh_token
       result[:user] = user
     else
-      errors << 'Invalid password, try again.'
+      errors << 'Invalid email or password, try again.'
     end
     UserPresenter.new(result)
   end

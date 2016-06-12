@@ -11,6 +11,16 @@ module Request
       # request.headers['Access-Control-Request-Method'] = %w{GET POST OPTIONS DELETE UPDATE}.join(",")
     end
 
+  def get_with_token(path, params={}, headers={})
+    headers.merge!('HTTP_ACCESS_TOKEN' => retrieve_access_token)
+    get path, params, headers
+  end
+
+  def post_with_token(path, params={}, headers={})
+    headers.merge!('HTTP_ACCESS_TOKEN' => retrieve_access_token)
+    post path, params, headers
+  end
+
     def include_default_accept_headers
       api_header
       api_response_format

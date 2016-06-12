@@ -11,6 +11,7 @@ RSpec.describe Api::UsersController, type: :controller do
       it 'renders the user in json format' do
         user = json_response(response)[:user]
         expect(user[:first_name]).to eq(user_attributes[:first_name])
+        expect(user[:access_token]).not_to be_nil
       end
 
       it { should respond_with 200 }

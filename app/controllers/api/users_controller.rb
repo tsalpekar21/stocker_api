@@ -5,7 +5,7 @@ module Api
     def create
       presenter = user_service.create(user_params)
       if user_service.successful?
-        render json: presenter.created_user, status: 200
+        render json: presenter.token_and_user, status: 200
       else
         render json: { errors: user_service.errors }, status: 500
       end
