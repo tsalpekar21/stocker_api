@@ -1,7 +1,6 @@
-module Api
-  class BasePresenter
-    def initialize
-      @errors = []
-    end
+class BasePresenter
+  attr_reader :result
+  def initialize(result)
+    @result = result
   end
 end

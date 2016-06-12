@@ -16,15 +16,14 @@ RSpec.describe Api::UsersController, type: :controller do
       it { should respond_with 200 }
     end
 
-
     context 'with the incorrect number of attributes' do
       before { post :create, { user: user_attributes.slice(:first_name, :last_name, :password) }, format: :json }
       it 'renders the errors from the user' do
         errors = json_response(response)[:errors]
-        expect(errors[:email]).to eq(["can't be blank"])
+        expect(errors.first[:email]).to eq(["can't be blank"])
       end
 
-      it { should respond_with 200 }
+      it { should respond_with 500 }
     end
 
     describe '#update' do

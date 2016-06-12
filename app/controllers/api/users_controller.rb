@@ -1,20 +1,22 @@
 module Api
   class UsersController < ApplicationController
+    skip_before_filter :create
+
     def create
       presenter = user_service.create(user_params)
-      if presenter.successful?
-        render json: { user: presenter.jsonify, status: 200 }
+      if user_service.successful?
+        render json: presenter.created_user, status: 200
       else
-        render json: { errors: presenter.errors, status: 500 }
+        render json: { errors: user_service.errors }, status: 500
       end
     end
 
     def update
       success = user_service.update(params[:id], user_params)
       if success
-        render json: { status: 200 }
+        head :ok
       else
-        render json: { status: 500 }
+        head 500
       end
     end
 

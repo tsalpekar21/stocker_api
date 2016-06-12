@@ -37,8 +37,10 @@ RSpec.configure do |config|
 
   config.include Request::JsonHelper, :type => :controller
   config.include Request::HeadersHelper, :type => :controller
+  config.include Request::JsonHelper, :type => :request
+  config.include Request::HeadersHelper, :type => :request
 
-  config.before(:each, type: :controller) do
+  config.before(:each, type: [:controller, :request]) do
     include_default_accept_headers
   end
 

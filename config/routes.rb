@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     post 'users' => 'users#create', as: :users_create
     put 'user/:id' => 'users#update', as: :users_update
 
-    post 'login' => 'sessions#create', as: :login
+    post 'login' => 'sessions#login', as: :login
   end
 
   # You can have the root of your site routed with "root"
