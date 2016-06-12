@@ -6,7 +6,7 @@ RSpec.describe Api::SessionsController, type: :controller do
   describe '#login' do
     context 'with a valid user' do
       before do
-        post :login, { user: { email: user.email, password: user.password } }, format: :json
+        get :login, { user: { email: user.email, password: user.password } }, format: :json
       end
 
       it 'should return a new auth token' do
@@ -19,7 +19,7 @@ RSpec.describe Api::SessionsController, type: :controller do
     end
 
     context 'with an invalid password' do
-      before { post :login, { user: { email: user.email, password: 'THEWRONGPASSWORD' } }, format: :json }
+      before { get :login, { user: { email: user.email, password: 'THEWRONGPASSWORD' } }, format: :json }
 
       it 'should return an error message about the invalid password' do
         result = json_response(response)
@@ -30,7 +30,7 @@ RSpec.describe Api::SessionsController, type: :controller do
     end
 
     context 'with an invalid email' do
-      before { post :login, { user: { email: 'nonexistantemail@gmail.com', password: 'THEWRONGPASSWORD' } }, format: :json }
+      before { get :login, { user: { email: 'nonexistantemail@gmail.com', password: 'THEWRONGPASSWORD' } }, format: :json }
 
       it 'should return an error message about the email not existing' do
         result = json_response(response)

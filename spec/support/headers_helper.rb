@@ -11,15 +11,13 @@ module Request
       # request.headers['Access-Control-Request-Method'] = %w{GET POST OPTIONS DELETE UPDATE}.join(",")
     end
 
-  def get_with_token(path, params={}, headers={})
-    headers.merge!('HTTP_ACCESS_TOKEN' => retrieve_access_token)
-    get path, params, headers
-  end
+    def request_access_token_header(token)
+      { 'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Token.encode_credentials(token) }
+    end
 
-  def post_with_token(path, params={}, headers={})
-    headers.merge!('HTTP_ACCESS_TOKEN' => retrieve_access_token)
-    post path, params, headers
-  end
+    def controller_access_token_header(token)
+      @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(token)
+    end
 
     def include_default_accept_headers
       api_header

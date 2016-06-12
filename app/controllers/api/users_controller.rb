@@ -1,6 +1,6 @@
 module Api
   class UsersController < ApplicationController
-    skip_before_filter :create
+    skip_before_filter :verify_authentication_token, :only => [:create]
 
     def create
       presenter = user_service.create(user_params)

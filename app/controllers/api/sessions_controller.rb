@@ -1,6 +1,6 @@
 module Api
   class SessionsController < ApplicationController
-    skip_before_filter :login
+    skip_before_filter :verify_authentication_token, :only => [:login]
 
     def login
       presenter = user_service.authenticate(user_params[:email], user_params[:password])

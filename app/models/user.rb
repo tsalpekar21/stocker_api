@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
   has_one :token
 
   def refresh_token
-    self.token.generate_access_token
-    self.token
+    self.token = self.token.generate_access_token
   end
 
 end

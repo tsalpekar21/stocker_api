@@ -26,20 +26,26 @@ RSpec.describe Api::UsersController, type: :controller do
 
       it { should respond_with 500 }
     end
+  end
 
-    describe '#update' do
-      let(:new_email) { FFaker::Internet.email }
-      let(:new_name) { FFaker::Name.first_name }
-      let(:user) { create(:user)}
+  describe '#update' do
+    let(:new_email) { FFaker::Internet.email }
+    let(:new_name) { FFaker::Name.first_name }
+    let(:user) { create(:user)}
 
-      before do
-        put :update, { id: user.id, user: { email: new_email, first_name: new_name } }, format: :json
-      end
-
-      context 'with some attribtues' do
-        it { should respond_with 200 }
-      end
-
+    before do
+      controller_access_token_header(user.token.access_token)
+      put :update, { id: user.id, user: { email: new_email, first_name: new_name } }, format: :json
     end
+
+    context 'with some attribtues' do
+      it 'should update the user' do
+        user = User.find_by(email: new_email)
+        expect(user).not_to be_nil
+      end
+
+      it { should respond_with 200 }
+    end
+
   end
 end
