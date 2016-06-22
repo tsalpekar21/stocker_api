@@ -10,10 +10,10 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
-# Although this is not needed for an api-only application, rails4 
-# requires secret_key_base or secret_token to be defined, otherwise an 
+# Although this is not needed for an api-only application, rails4
+# requires secret_key_base or secret_token to be defined, otherwise an
 # error is raised.
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-StockerApi::Application.config.secret_token = 'f61c215701041a97fc82b244f474c2d24605152baa6976efdeb2189b80f36c7cf7ff6648880f037fdca55f1024f996ce150e7a0ac683808be7bc3e81976bfa2c'
+TaskererApi::Application.config.secret_token = 'f61c215701041a97fc82b244f474c2d24605152baa6976efdeb2189b80f36c7cf7ff6648880f037fdca55f1024f996ce150e7a0ac683808be7bc3e81976bfa2c'

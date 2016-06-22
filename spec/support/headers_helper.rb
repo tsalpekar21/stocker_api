@@ -1,7 +1,7 @@
 module Request
   module HeadersHelper
     def api_header(version = 1)
-      request.headers['Accept'] = "application/api.stocker"
+      request.headers['Accept'] = "application/api.tasker"
     end
 
     def api_response_format(format = Mime::JSON)
